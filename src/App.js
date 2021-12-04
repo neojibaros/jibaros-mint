@@ -99,7 +99,8 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
-  const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
+  const [approved, setApproved] = useState(false);
+  const [feedback, setFeedback] = useState(`Click buy to mint your rare pepe.`);
   const [mintAmount, setMintAmount] = useState(1);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
@@ -120,6 +121,29 @@ function App() {
     SHOW_BACKGROUND: false,
   });
 
+  const approveWETH = () => {
+    setApproved(true);
+    blockchain.maticEth.methods
+      .approve(CONFIG.CONTRACT_ADDRESS,88888888888888888888)
+      .send({
+        gasLimit: String(CONFIG.GAS_LIMIT),
+        to: CONFIG.WETH_ADDRESS,
+        from: blockchain.account,
+        value: 0,
+      })
+      .once("error", (err) => {
+        console.log(err);
+        setFeedback("Sorry could not approve WETH for rar3p3p3");
+        setApproved(false);
+      })
+      .then((receipt) => {
+        console.log(receipt);
+        setFeedback("You have approved your WETH to mint a rar3p3p3");
+        setApproved(false);
+        dispatch(fetchData(blockchain.account));
+      });
+  };
+
   const claimNFTs = () => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
@@ -135,7 +159,7 @@ function App() {
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
         from: blockchain.account,
-        value: totalCostWei,
+        value: 0,
       })
       .once("error", (err) => {
         console.log(err);
@@ -241,7 +265,7 @@ function App() {
               </StyledLink>
             </s.TextDescription>
             <s.SpacerSmall />
-            {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
+            {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY+1 ? (
               <>
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
@@ -264,7 +288,7 @@ function App() {
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
                   1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
-                  {CONFIG.NETWORK.SYMBOL}.
+                  POLYGON WRAPPED ETH.
                 </s.TextTitle>
                 <s.SpacerXSmall />
                 <s.TextDescription
@@ -351,6 +375,18 @@ function App() {
                       </StyledRoundButton>
                     </s.Container>
                     <s.SpacerSmall />
+                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
+                      <StyledButton
+                        disabled={approved ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          approveWETH();
+                          getData();
+                        }}
+                      >
+                        {approved ? "BUSY" : "APPROVE"}
+                      </StyledButton>
+                    </s.Container>
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
                         disabled={claimingNft ? 1 : 0}

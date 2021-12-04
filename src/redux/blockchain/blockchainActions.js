@@ -40,7 +40,14 @@ export const connect = () => {
         Accept: "application/json",
       },
     });
+    const wethabiResponse = await fetch("/config/maticweth.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
     const abi = await abiResponse.json();
+    const wethabi = await wethabiResponse.json();
     const configResponse = await fetch("/config/config.json", {
       headers: {
         "Content-Type": "application/json",
@@ -65,10 +72,16 @@ export const connect = () => {
             abi,
             CONFIG.CONTRACT_ADDRESS
           );
+          const maticEthObj = new Web3EthContract(
+            wethabi,
+            CONFIG.WETH_ADDRESS
+          )
+
           dispatch(
             connectSuccess({
               account: accounts[0],
               smartContract: SmartContractObj,
+              maticEth: maticEthObj,
               web3: web3,
             })
           );
