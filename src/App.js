@@ -225,11 +225,10 @@ function App() {
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
         image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
       >
-        <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
+        <img alt={"logo"} src={"/config/images/logo.png"} width={"42%"}/>
         <s.SpacerSmall />
-        <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
+        <ResponsiveWrapper flex={1} style={{ padding: 8 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
           </s.Container>
           <s.SpacerLarge />
           <s.Container
@@ -294,7 +293,7 @@ function App() {
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Excluding gas fees.
+                  Make sure you are connected to the Polygon Matic Mainnet with Metamask.
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
@@ -415,27 +414,37 @@ function App() {
           </s.Container>
         </ResponsiveWrapper>
         <s.SpacerMedium />
-        <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
-          <s.TextDescription
-            style={{
-              textAlign: "center",
-              color: "var(--primary-text)",
-            }}
-          >
-            Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address.
-          </s.TextDescription>
-          <s.SpacerSmall />
-          <s.TextDescription
-            style={{
-              textAlign: "center",
-              color: "var(--primary-text)",
-            }}
-          >
-            We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
-            successfully mint your NFT. We recommend that you don't lower the
-            gas limit.
-          </s.TextDescription>
+        <s.Container jc={"center"} ai={"center"} style={{ width: "70%", display: "inline-block", textAlign:"center" }}>
+            <a href={"https://twitter.com/jibarosnft"} target="_blank" style={{padding:"21px"}}>
+              <img
+              alt={"Jibaros Twitter"}
+              src={"/config/images/Twitter social icons - circle - blue.png"}
+              height={"50px"}
+            /></a>
+            <a href={"https://discord.gg/tq33cAeZhK"} target="_blank" style={{padding:"21px"}}>
+              <img
+              alt={"Jibaros Discord"}
+              src={"/config/images/Discord-Logo-Color.png"}
+              height={"50px"}
+            /></a>
+            <a href={"https://medium.com/@jibarodao"} target="_blank" style={{padding:"21px"}}>
+              <img
+              alt={"Jibaros Medium"}
+              src={"/config/images/Medium.png"}
+              height={"50px"}
+            /></a>
+            <a href={"https://polygonscan.com/address/0x1b1F33A9eEf47565d195E1943845AaC1777312B8"} target="_blank" style={{padding:"21px"}}>
+              <img
+              alt={"Jibaros Contract Address on Polygon"}
+              src={"/config/images/polygon-matic-logo.png"}
+              height={"50px"}
+            /></a>
+            <a href={"https://opensea.io/collection/jibaros"} target="_blank" style={{padding:"21px"}}>
+              <img
+              alt={"Jibaros Opensea Collection"}
+              src={"/config/images/Opensea-Logomark-Blue.png"}
+              height={"50px"}
+            /></a>
         </s.Container>
       </s.Container>
     </s.Screen>
