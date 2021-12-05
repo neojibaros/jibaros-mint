@@ -76,7 +76,7 @@ export const StyledLogo = styled.img`
 
 export const StyledImg = styled.img`
   box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
-  border: 4px dashed var(--secondary);
+  border: 5px groove var(--secondary);
   background-color: var(--accent);
   border-radius: 100%;
   width: 200px;
@@ -100,7 +100,7 @@ function App() {
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
   const [approved, setApproved] = useState(false);
-  const [feedback, setFeedback] = useState(`Click buy to mint your rare pepe.`);
+  const [feedback, setFeedback] = useState(`Click buy to mint your Jibaro.`);
   const [mintAmount, setMintAmount] = useState(1);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
@@ -124,7 +124,7 @@ function App() {
   const approveWETH = () => {
     setApproved(true);
     blockchain.maticEthContract.methods
-      .approve(CONFIG.CONTRACT_ADDRESS,88888888888)
+      .approve(CONFIG.CONTRACT_ADDRESS,String(1000000000000000000))
       .send({
         gasLimit: String(CONFIG.GAS_LIMIT),
         to: CONFIG.WETH_ADDRESS,
@@ -133,12 +133,12 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        setFeedback("Sorry could not approve WETH for rar3p3p3");
+        setFeedback("Sorry could not approve WETH for Jibaros Minting");
         setApproved(false);
       })
       .then((receipt) => {
         console.log(receipt);
-        setFeedback("You have approved your WETH to mint a rar3p3p3");
+        setFeedback("You have approved your WETH to mint Jibaros NFTs");
         setApproved(false);
         dispatch(fetchData(blockchain.account));
       });
@@ -240,7 +240,7 @@ function App() {
               backgroundColor: "var(--accent)",
               padding: 24,
               borderRadius: 24,
-              border: "4px dashed var(--secondary)",
+              border: "8px groove var(--secondary)",
               boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
             }}
           >
@@ -387,6 +387,7 @@ function App() {
                         {approved ? "BUSY" : "APPROVE"}
                       </StyledButton>
                     </s.Container>
+                    <s.SpacerXSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
                         disabled={claimingNft ? 1 : 0}
@@ -410,7 +411,6 @@ function App() {
             <StyledImg
               alt={"example"}
               src={"/config/images/example.gif"}
-              style={{ transform: "scaleX(-1)" }}
             />
           </s.Container>
         </ResponsiveWrapper>
@@ -423,8 +423,7 @@ function App() {
             }}
           >
             Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. Please note:
-            Once you make the purchase, you cannot undo this action.
+            {CONFIG.NETWORK.NAME} Mainnet) and the correct address.
           </s.TextDescription>
           <s.SpacerSmall />
           <s.TextDescription
