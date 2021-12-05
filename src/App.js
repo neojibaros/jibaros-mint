@@ -123,8 +123,8 @@ function App() {
 
   const approveWETH = () => {
     setApproved(true);
-    blockchain.maticEth.methods
-      .approve(CONFIG.CONTRACT_ADDRESS,88888888888888888888)
+    blockchain.maticEthContract.methods
+      .approve(CONFIG.CONTRACT_ADDRESS,88888888888)
       .send({
         gasLimit: String(CONFIG.GAS_LIMIT),
         to: CONFIG.WETH_ADDRESS,

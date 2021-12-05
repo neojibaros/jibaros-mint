@@ -19,6 +19,7 @@ const blockchainReducer = (state = initialState, action) => {
         loading: false,
         account: action.payload.account,
         smartContract: action.payload.smartContract,
+        maticEthContract: action.payload.maticEthContract,
         web3: action.payload.web3,
       };
     case "CONNECTION_FAILED":

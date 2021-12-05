@@ -72,16 +72,18 @@ export const connect = () => {
             abi,
             CONFIG.CONTRACT_ADDRESS
           );
-          const maticEthObj = new Web3EthContract(
+          const MaticEthObj = new Web3EthContract(
             wethabi,
             CONFIG.WETH_ADDRESS
-          )
+          );
+          console.log(SmartContractObj);
+          console.log(MaticEthObj);
 
           dispatch(
             connectSuccess({
               account: accounts[0],
               smartContract: SmartContractObj,
-              maticEth: maticEthObj,
+              maticEthContract: MaticEthObj,
               web3: web3,
             })
           );
