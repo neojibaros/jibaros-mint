@@ -1,8 +1,39 @@
 // constants
 import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import WalletLink from "walletlink";
+
 // log
 import { fetchData } from "../data/dataActions";
+
+const INFURA_ID = "";
+
+const providerOptions = {
+  walletconnect: {
+    package: WalletConnectProvider, // required
+    options: {
+      infuraId: INFURA_ID, // required
+      rpc: {
+        43114: "https://api.avax.network/ext/bc/C/rpc", // AVAX C-Chain
+      },
+    },
+  },
+  walletlink: {
+    package: WalletLink, // Required
+    options: {
+      appName: "Ava Sharks", // Required
+      infuraId: "", // Required unless you provide a JSON RPC url; see `rpc` below
+      rpc: "https://matic-mainnet.chainstacklabs.com", // Optional if `infuraId` is provided; otherwise it's required
+      chainId: 137, // Optional. It defaults to 1 if not provided
+      appLogoUrl: null, // Optional. Application logo image URL. favicon is used if unspecified
+      darkMode: false, // Optional. Use dark theme, defaults to false
+    },
+  },
+};
+
+
 
 const connectRequest = () => {
   return {
@@ -55,6 +86,8 @@ export const connect = () => {
       },
     });
     const CONFIG = await configResponse.json();
+    
+    
     const { ethereum } = window;
     const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
     if (metamaskIsInstalled) {
