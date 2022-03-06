@@ -8,7 +8,7 @@ import WalletLink from "walletlink";
 // log
 import { fetchData } from "../data/dataActions";
 
-const INFURA_ID = "";
+const INFURA_ID = "56d2d22d72a54dd487db1285c4746af0";
 
 const providerOptions = {
   walletconnect: {
@@ -16,17 +16,17 @@ const providerOptions = {
     options: {
       infuraId: INFURA_ID, // required
       rpc: {
-        43114: "https://api.avax.network/ext/bc/C/rpc", // AVAX C-Chain
+        137: "https://polygon-mainnet.infura.io/v3/56d2d22d72a54dd487db1285c4746af0", // AVAX C-Chain
       },
     },
   },
   walletlink: {
     package: WalletLink, // Required
     options: {
-      appName: "Ava Sharks", // Required
-      infuraId: "", // Required unless you provide a JSON RPC url; see `rpc` below
-      rpc: "https://api.avax.network/ext/bc/C/rpc", // Optional if `infuraId` is provided; otherwise it's required
-      chainId: 43114, // Optional. It defaults to 1 if not provided
+      appName: "Jibaros", // Required
+      infuraId: "56d2d22d72a54dd487db1285c4746af0", // Required unless you provide a JSON RPC url; see `rpc` below
+      rpc: "https://polygon-mainnet.infura.io/v3/56d2d22d72a54dd487db1285c4746af0", // Optional if `infuraId` is provided; otherwise it's required
+      chainId: 137, // Optional. It defaults to 1 if not provided
       appLogoUrl: null, // Optional. Application logo image URL. favicon is used if unspecified
       darkMode: false, // Optional. Use dark theme, defaults to false
     },
