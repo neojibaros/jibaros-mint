@@ -121,12 +121,14 @@ function App() {
     SHOW_BACKGROUND: false,
   });
 
+    // AQUI PUEDES CAMBIAR EL GAS PRICE
   const approveWETH = () => {
     setApproved(true);
     blockchain.maticEthContract.methods
       .approve(CONFIG.CONTRACT_ADDRESS,String(1000000000000000000))
       .send({
         gasLimit: String(CONFIG.GAS_LIMIT),
+        gasPrice: 35000000000,
         to: CONFIG.WETH_ADDRESS,
         from: blockchain.account,
         value: 0,
@@ -153,10 +155,12 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
+  // AQUI PUEDES CAMBIAR EL GAS PRICE
     blockchain.smartContract.methods
       .mint(mintAmount)
       .send({
         gasLimit: String(totalGasLimit),
+        gasPrice: 35000000000,
         to: CONFIG.CONTRACT_ADDRESS,
         from: blockchain.account,
         value: 0,
