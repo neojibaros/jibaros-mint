@@ -297,7 +297,7 @@ function App() {
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Make sure you are connected to the Polygon Matic Mainnet with Metamask.
+                  Make sure you are connected to the Polygon Matic Mainnet.
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
