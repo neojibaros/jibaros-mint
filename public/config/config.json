@@ -10,7 +10,7 @@
   "SYMBOL": "JIBARO",
   "MAX_SUPPLY": 10000,
   "WEI_COST": 35000000000000000,
-  "DISPLAY_COST": 0.05,
+  "DISPLAY_COST": 0.035,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "Opeansea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/jibaros",
